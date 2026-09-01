@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { ButtonDirective } from 'primeng/button';
 import { Header } from "./core/shared/components/header/header";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-  imports: [ButtonDirective, Header],
+  imports: [ Header, RouterOutlet],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',
