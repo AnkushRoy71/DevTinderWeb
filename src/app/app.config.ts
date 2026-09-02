@@ -5,6 +5,9 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import { environment } from '../environments/environment.development';
 import { provideHttpClient } from '@angular/common/http';
+import { provideStore } from '@ngrx/store';
+import { userReducer } from './core/shared/state/user/user,reducer';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,5 +20,11 @@ export const appConfig: ApplicationConfig = {
       license: environment.PrimeUILicenseKey,
     }),
     provideHttpClient(),
+    provideStore({
+      user: userReducer,
+    }),
+    provideStoreDevtools({
+      maxAge: 25,
+    }),
   ],
 };
