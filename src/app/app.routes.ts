@@ -6,6 +6,10 @@ export const routes: Routes = [
         loadComponent: () => import('./feature/auth/login/login'),
     },
     {
+        path: 'feed',
+        loadComponent: () => import('./feature/home/feed/feed'),
+    },
+    {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full',

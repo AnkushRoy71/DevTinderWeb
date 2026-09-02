@@ -9,6 +9,7 @@ import { Auth } from '../auth';
 import { UserModel } from '../../../core/shared/models/user.model';
 import { Store } from '@ngrx/store';
 import { addUser } from '../../../core/shared/state/user/user.actions';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [CardModule, ButtonModule, InputTextModule, LabelModule, FormField],
@@ -19,6 +20,8 @@ import { addUser } from '../../../core/shared/state/user/user.actions';
 export default class Login {
   authService = inject(Auth);
   store = inject(Store);
+  navigate = inject(Router);
+
   loginModel = signal<LoginRequestModel>({
     email: '',
     password: '',
@@ -44,7 +47,7 @@ export default class Login {
         console.log('Login successful:', response);
         const userData = response.data;
         this.store.dispatch(addUser({ user: userData }));
-
+        this.navigate.navigate(['/feed']);
       },
       error: (error) => {
         console.error('Login failed:', error);
