@@ -3,13 +3,29 @@
     <h5 class="p-2">🧑‍💻 DevTinder</h5>
   </ng-template>
   <ng-template #end>
-    @if(user$ | async; as user){
+    @if (user$ | async; as user) {
       <div class="flex items-center gap-2">
-        <p class="w-36" >Welcome, {{ user.firstName }}</p>
-        <p-avatar
-          image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-          shape="circle"
-        />
+        <p class="w-36">Welcome, {{ user.firstName }}</p>
+        <div class="avatar-menu">
+          <button
+            type="button"
+            class="avatar-trigger"
+            aria-label="Open account menu"
+            aria-haspopup="menu"
+          >
+            <p-avatar
+              image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+              shape="circle"
+            />
+          </button>
+          <div class="account-menu" role="menu">
+            <button type="button" role="menuitem" (click)="openProfile()">Profile</button>
+            <button type="button" role="menuitem" (click)="openSettings()">Settings</button>
+            <button type="button" role="menuitem" class="logout-action" (click)="logout()">
+              Logout
+            </button>
+          </div>
+        </div>
       </div>
     }
   </ng-template>

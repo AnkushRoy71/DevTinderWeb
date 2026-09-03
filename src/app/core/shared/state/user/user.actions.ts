@@ -5,3 +5,7 @@ export const addUser = createAction(
   '[User] Add User',
   props<{ user: UserModel }>()
 );
+
+export const clearUser = createAction(
+  '[User] Clear User'
+);

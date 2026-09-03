@@ -1,0 +1,62 @@
+.avatar-menu {
+	position: relative;
+}
+
+.avatar-trigger {
+	display: flex;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: transparent;
+	cursor: pointer;
+}
+
+.avatar-trigger:focus-visible,
+.account-menu button:focus-visible {
+	outline: 2px solid var(--p-primary-color);
+	outline-offset: 3px;
+}
+
+.account-menu {
+	position: absolute;
+	z-index: 1000;
+	top: calc(100% + 0.5rem);
+	right: 0;
+	display: grid;
+	min-width: 9rem;
+	padding: 0.35rem;
+	border: 1px solid var(--p-content-border-color);
+	border-radius: 0.5rem;
+	background: var(--p-content-background);
+	box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 15%);
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(-0.35rem);
+	transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.avatar-menu:hover .account-menu,
+.avatar-menu:focus-within .account-menu {
+	opacity: 1;
+	pointer-events: auto;
+	transform: translateY(0);
+}
+
+.account-menu button {
+	padding: 0.65rem 0.8rem;
+	border: 0;
+	border-radius: 0.3rem;
+	background: transparent;
+	color: var(--p-text-color);
+	font: inherit;
+	text-align: left;
+	cursor: pointer;
+}
+
+.account-menu button:hover {
+	background: var(--p-content-hover-background);
+}
+
+.account-menu .logout-action {
+	color: var(--p-red-500);
+}
