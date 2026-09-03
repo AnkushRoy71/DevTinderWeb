@@ -11,7 +11,7 @@ export class Auth {
     loginApi(loginCedentials: LoginRequestModel) : Observable<{data: UserModel, message: string}>{
         return this.http.post<{ data: UserModel; message: string }>(
           'http://localhost:3000/login',
-          loginCedentials,
+          loginCedentials, { withCredentials: true }
         );
     }
 }
