@@ -1,12 +1,6 @@
-export interface ApiSuccessResponseModel<T> {
+export interface ApiResponseModel<T> {
   status: number;
   message: string;
   data: T;
-};
-
-
-export interface ApiErrorResponseModel {
-  status: number;
-  message: string;
   error: any;
-}
+};

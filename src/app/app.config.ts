@@ -8,6 +8,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { userReducer } from './core/shared/state/user/user,reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { feedReducer } from './core/shared/state/feed/feed.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,6 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore({
       user: userReducer,
+      feed: feedReducer,
     }),
     provideStoreDevtools({
       maxAge: 25,

@@ -4,8 +4,9 @@ import { Router, RouterOutlet } from '@angular/router';
 import { Profile } from './core/services/httpServices/profile';
 import { UserModel } from './core/shared/models/user.model';
 import {
-  ApiErrorResponseModel,
-  ApiSuccessResponseModel,
+  
+  ApiResponseModel
+  
 } from './core/shared/models/apiReponse.model';
 import { Store } from '@ngrx/store';
 import { selectUser } from './core/shared/state/user/user.selector';
@@ -32,12 +33,12 @@ export class App implements OnInit {
   getUserDetails() {
     if (this.user()) return;
     this.profileService.getUserDetails().subscribe({
-      next: (response: ApiSuccessResponseModel<UserModel>) => {
+      next: (response: ApiResponseModel<UserModel>) => {
         console.log('User details:', response.data);
         this.storeService.dispatch({ type: '[User] Add User', user: response.data });
         this.navigateService.navigate(['/feed']);
       },
-      error: (error: ApiErrorResponseModel) => {
+      error: (error: ApiResponseModel<UserModel>) => {
         if (error.status === 401) {
           console.log('User is not authenticated. Redirecting to login page...');
           // You can redirect the user to the login page here if needed
