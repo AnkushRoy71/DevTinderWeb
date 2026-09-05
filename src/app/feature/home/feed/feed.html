@@ -1,10 +1,14 @@
 <div class="flex justify-center mt-10">
-  @if(feedItems.length > 0){
-    @for(feedItem of feedItems; track feedItem._id) {
-      <app-feed-card [feedItem]="feedItem" />
+  @if(feedState$ | async; as feedItems){
+    @if(feedItems.length > 0){
+      {{ feedItems.length }} feed items found.
+      @for(feedItem of feedItems; track feedItem._id) {
+        <app-feed-card [feedItem]="feedItem" />
+      }
     }
-  }
-  @else{
-    <p class="text-center text-gray-500">No feed items available.</p>
+    @else{
+      {{ feedItems.length }} feed items found.
+      <p class="text-center text-gray-500">No feed items available.</p>
+    }
   }
 </div>
