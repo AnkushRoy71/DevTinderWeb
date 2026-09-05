@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { MenuItem } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
@@ -13,7 +13,15 @@ import { AsyncPipe } from '@angular/common';
 import { Auth } from '../../../../feature/auth/auth';
 
 @Component({
-  imports: [AvatarModule, BadgeModule, MenubarModule, InputTextModule, RippleModule, AsyncPipe],
+  imports: [
+    AvatarModule,
+    BadgeModule,
+    MenubarModule,
+    InputTextModule,
+    RippleModule,
+    AsyncPipe,
+    RouterLink,
+  ],
   selector: 'app-header',
   styleUrl: './header.scss',
   templateUrl: './header.html',
@@ -27,15 +35,6 @@ export class Header implements OnInit {
   authService = inject(Auth);
 
   ngOnInit(): void {}
-
-  openProfile(): void {
-    console.info('Profile view is not available yet.');
-  }
-
-  openSettings(): void {
-    console.info('Settings view is not available yet.');
-  }
-
   logout(): void {
     this.authService.logOutApi().subscribe({
       next: (response) => {

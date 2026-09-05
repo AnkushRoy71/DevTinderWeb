@@ -5,4 +5,5 @@ export interface FeedModel {
   age: number;
   gender: string;
   photoUrl: string;
+  about: string;
 }

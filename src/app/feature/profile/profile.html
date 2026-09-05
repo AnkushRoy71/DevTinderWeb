@@ -1,0 +1,100 @@
+<div class="flex justify-center align-center mt-10">
+  <p-card
+    class="max-w-sm w-full"
+    header="Profile Edit"
+    subheader="Keep your developer profile up to date."
+  >
+    <form class="space-y-6 mt-3" (submit)="onSubmit($event)">
+      <div class="flex flex-col gap-2">
+        <label pLabel for="firstName">First Name</label>
+        <input
+          pInputText
+          [formField]="profileForm.firstName"
+          id="firstName"
+          type="text"
+          placeholder="First name"
+        />
+        @if (submitted() && profileForm.firstName().invalid()) {
+          <small class="text-red-500">First name is required.</small>
+        }
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label pLabel for="lastName">Last Name</label>
+        <input
+          pInputText
+          [formField]="profileForm.lastName"
+          id="lastName"
+          type="text"
+          placeholder="Last name"
+        />
+        @if (submitted() && profileForm.lastName().invalid()) {
+          <small class="text-red-500">Last name is required.</small>
+        }
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label pLabel for="age">Age</label>
+        <p-inputnumber
+          [formField]="profileForm.age"
+          inputId="age"
+          placeholder="Your age"
+          [min]="18"
+          [max]="100"
+          [useGrouping]="false"
+        />
+        @if (submitted() && profileForm.age().invalid()) {
+          <small class="text-red-500">Enter an age between 18 and 100.</small>
+        }
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label pLabel for="gender">Gender</label>
+        <p-select
+          [formField]="profileForm.gender"
+          inputId="gender"
+          [options]="genderOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select gender"
+          class="w-full"
+        />
+        @if (submitted() && profileForm.gender().invalid()) {
+          <small class="text-red-500">Gender is required.</small>
+        }
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label pLabel for="photoUrl">Photo URL</label>
+        <input
+          pInputText
+          [formField]="profileForm.photoUrl"
+          id="photoUrl"
+          type="url"
+          placeholder="https://example.com/photo.jpg"
+        />
+        @if (submitted() && profileForm.photoUrl().invalid()) {
+          <small class="text-red-500">Enter a valid photo URL.</small>
+        }
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label pLabel for="about">About</label>
+        <textarea
+          pTextarea
+          [formField]="profileForm.about"
+          id="about"
+          rows="4"
+          placeholder="Tell the community about yourself"
+        ></textarea>
+        @if (submitted() && profileForm.about().invalid()) {
+          <small class="text-red-500">About must be 500 characters or fewer.</small>
+        }
+      </div>
+
+      <div class="flex justify-center">
+        <button type="submit" pButton>Save Profile</button>
+      </div>
+    </form>
+  </p-card>
+</div>

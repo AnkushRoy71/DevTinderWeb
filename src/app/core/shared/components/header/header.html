@@ -19,8 +19,8 @@
             />
           </button>
           <div class="account-menu" role="menu">
-            <button type="button" role="menuitem" (click)="openProfile()">Profile</button>
-            <button type="button" role="menuitem" (click)="openSettings()">Settings</button>
+            <button routerLink="/profile">Profile</button>
+            <button routerLink="/settings">Settings</button>
             <button type="button" role="menuitem" class="logout-action" (click)="logout()">
               Logout
             </button>
