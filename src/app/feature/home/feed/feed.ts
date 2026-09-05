@@ -1,27 +1,32 @@
 import { Component, inject } from '@angular/core';
-import { AvatarModule } from 'primeng/avatar';
-import { CardModule } from 'primeng/card';
-import { TagModule } from 'primeng/tag';
-import { ButtonModule } from 'primeng/button';
 import { FeedService } from '../feed-service';
 import { ApiResponseModel } from '../../../core/shared/models/apiReponse.model';
 import { FeedModel } from '../../../core/shared/models/feed.model';
 import { Store } from '@ngrx/store';
+import { selectFeed } from '../../../core/shared/state/feed/feed.selector';
+import { FeedCard } from "./feed-card/feed-card";
 
 @Component({
-  imports: [AvatarModule, CardModule, TagModule, ButtonModule],
+  imports: [FeedCard],
   selector: 'app-feed',
   styleUrl: './feed.scss',
   templateUrl: './feed.html',
 })
 export default class Feed {
-
   feedService = inject(FeedService);
   storeService = inject(Store);
   feedItems: FeedModel[] = [];
+  feedState$ = this.storeService.select(selectFeed);
 
   ngOnInit(): void {
-    this.getFeedItems();
+    this.feedState$.subscribe((feed) => {
+      if(!feed){
+        this.getFeedItems();
+      }
+      else{
+        this.feedItems = feed.length > 0 ? feed : [];
+      }
+    });
   }
 
   getFeedItems() {

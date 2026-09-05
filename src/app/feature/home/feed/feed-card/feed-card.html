@@ -1,0 +1,35 @@
+  <p-card class="max-w-sm w-full overflow-hidden" [pt]="{ body: { class: 'pt-16!' } }">
+    <ng-template #header>
+      <div class="relative">
+        <img
+          class="w-full object-cover"
+          alt="user header"
+          src="{{ feedItem.photoUrl ?? 'https://geographyandyou.com/images/user-profile.png' }}">
+      </div>
+    </ng-template>
+    <ng-template #title>
+      <span class="font-bold text-xl">{{ feedItem.firstName }} {{ feedItem.lastName }}</span>
+    </ng-template>
+    <ng-template #subtitle>
+      <div class="flex items-center gap-2">
+        <p>Age: {{ feedItem.age }}</p>
+        <p>{{ feedItem.gender | uppercase }}</p>
+      </div>
+    </ng-template>
+    <div class="space-y-4">
+      <p>
+        Sakura Fresh Market is your go-to store for fresh local produce, Japanese snacks, and daily
+        essentials — all in one place!
+      </p>
+    </div>
+    <ng-template #footer>
+      <div class="flex items-center gap-2 mt-4">
+        <button type="button" pButton severity="secondary" [outlined]="true" class="flex-1">
+          Dislike
+        </button>
+        <button type="button" pButton class="flex-1">
+          Like
+        </button>
+      </div>
+    </ng-template>
+  </p-card>
