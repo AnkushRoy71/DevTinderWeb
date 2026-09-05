@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Header } from './core/shared/components/header/header';
 import { Router, RouterOutlet } from '@angular/router';
-import { Profile } from './core/services/httpServices/profile';
+import {  ProfileService } from './core/services/httpServices/profile';
 import { UserModel } from './core/shared/models/user.model';
 import {
   
@@ -20,7 +20,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class App implements OnInit {
   protected readonly title = signal('DevTinderWeb');
-  profileService = inject(Profile);
+  profileService = inject(ProfileService);
   navigateService = inject(Router);
   storeService = inject(Store);
 

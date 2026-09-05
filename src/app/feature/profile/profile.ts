@@ -11,8 +11,12 @@ import { TextareaModule } from 'primeng/textarea';
 import { addUser } from '../../core/shared/state/user/user.actions';
 import { selectUser } from '../../core/shared/state/user/user.selector';
 import { FeedModel } from '../../core/shared/models/feed.model';
+import { FeedCard } from "../home/feed/feed-card/feed-card";
+import { ProfileService } from '../../core/services/httpServices/profile';
+import { ApiResponseModel } from '../../core/shared/models/apiReponse.model';
+import { UserModel } from '../../core/shared/models/user.model';
 
-interface ProfileFormModel extends FeedModel {
+export interface ProfileFormModel extends FeedModel {
 }
 
 @Component({
@@ -25,7 +29,8 @@ interface ProfileFormModel extends FeedModel {
     LabelModule,
     SelectModule,
     TextareaModule,
-  ],
+    FeedCard
+],
   selector: 'app-profile',
   styleUrl: './profile.scss',
   templateUrl: './profile.html',
@@ -33,6 +38,7 @@ interface ProfileFormModel extends FeedModel {
 export default class Profile {
   private readonly store = inject(Store);
   private readonly currentUser = this.store.selectSignal(selectUser);
+  private readonly profileService = inject(ProfileService)
 
   readonly submitted = signal(false);
   readonly genderOptions = [
@@ -55,6 +61,7 @@ export default class Profile {
 
   onSubmit(event: Event): void {
     event.preventDefault();
+    console.log('Form submitted:', this.profileModel());
     this.submitted.set(true);
 
     if (this.profileForm().valid()) {
@@ -64,7 +71,17 @@ export default class Profile {
 
   private saveProfile(profile: ProfileFormModel): void {
     const user = this.currentUser();
-
+    this.profileService.updateUserDetails(profile).subscribe({
+      next: (response: ApiResponseModel<UserModel>) => {
+        console.log('Profile updated successfully:', response.data);
+        if (response.data) {
+          this.store.dispatch(addUser({ user: response.data }));
+        }
+      },
+      error: (error: ApiResponseModel<UserModel>) => {
+        console.error('Error updating profile:', error);
+      }
+    });
     // if (user) {
     //   this.store.dispatch(addUser({ user: { ...user, ...profile } }));
     // }
@@ -74,7 +91,6 @@ export default class Profile {
     const user = this.currentUser();
 
     return {
-      _id: user?._id ?? '',
       firstName: user?.firstName ?? '',
       lastName: user?.lastName ?? '',
       age: user?.age ?? 0,
