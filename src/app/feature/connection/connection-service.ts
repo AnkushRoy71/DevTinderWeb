@@ -10,6 +10,6 @@ export class ConnectionService {
     http = inject(HttpClient);
 
     getConnections() : Observable<ApiResponseModel<ConnectionModel[]>> {
-        return this.http.get<ApiResponseModel<ConnectionModel[]>>(`${environment.API_URL}/user/connections`);
+        return this.http.get<ApiResponseModel<ConnectionModel[]>>(`${environment.API_URL}/users/connections`, {withCredentials: true});
     }
 }

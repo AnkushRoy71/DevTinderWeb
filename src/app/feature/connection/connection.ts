@@ -1,6 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ConnectionCard } from './connection-card/connection-card';
 import { ConnectionService } from './connection-service';
+import { Store } from '@ngrx/store';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { selectConnection } from '../../core/shared/state/connection/connection.selector';
 
 @Component({
   imports: [ConnectionCard],
@@ -10,21 +13,28 @@ import { ConnectionService } from './connection-service';
 })
 export default class Connection implements OnInit {
   connectionService = inject(ConnectionService);
+  storeService = inject(Store);
+  connectionStore = toSignal(this.storeService.select(selectConnection));
 
   ngOnInit() {
-    this.getConnections();
+    if (!this.connectionStore()) {
+      this.getConnections();
+    }
   }
   getConnections() {
     // Call the service to get connections
     this.connectionService.getConnections().subscribe({
       next: (response) => {
         console.log('Connections fetched successfully:', response);
-        // Handle the response data as needed
+        this.storeService.dispatch({
+          type: '[Connection] Add Connection',
+          connection: response.data,
+        });
       },
       error: (error) => {
         console.error('Error fetching connections:', error);
         // Handle the error as needed
-      }
+      },
     });
   }
 }
