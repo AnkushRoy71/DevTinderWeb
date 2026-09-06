@@ -1,0 +1,12 @@
+<div class="flex items-center gap-4 bg-gray-600 w-150 p-2 rounded" >
+    <img
+        src="{{ connection.photoUrl }}"
+        alt="Connection Icon"
+        class="w-20 h-20 m-2"
+    />
+    <div>
+        <p>{{ connection.firstName + ' ' }} {{ connection.lastName }}</p>
+        <p>{{ connection.age }}</p>
+        <p>{{ connection.about }}</p>
+    </div>
+</div>

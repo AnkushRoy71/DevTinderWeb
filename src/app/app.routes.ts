@@ -14,6 +14,10 @@ export const routes: Routes = [
     loadComponent: () => import('./feature/profile/profile'),
   },
   {
+    path: 'connection',
+    loadComponent: () => import('./feature/connection/connection'),
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',

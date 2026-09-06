@@ -1,6 +1,6 @@
 <p-menubar>
   <ng-template #start>
-    <h5 class="p-2">🧑‍💻 DevTinder</h5>
+    <h5 routerLink="/feed" class="p-2">🧑‍💻 DevTinder</h5>
   </ng-template>
   <ng-template #end>
     @if (user$ | async; as user) {
@@ -20,7 +20,7 @@
           </button>
           <div class="account-menu" role="menu">
             <button routerLink="/profile">Profile</button>
-            <button routerLink="/settings">Settings</button>
+            <button routerLink="/connection">Connection</button>
             <button type="button" role="menuitem" class="logout-action" (click)="logout()">
               Logout
             </button>
