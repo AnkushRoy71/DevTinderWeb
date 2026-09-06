@@ -10,6 +10,7 @@ import { userReducer } from './core/shared/state/user/user,reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { feedReducer } from './core/shared/state/feed/feed.reducer';
 import { connectionReducer } from './core/shared/state/connection/connection.reducer';
+import { requestReducer } from './core/shared/state/request/request.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,6 +27,7 @@ export const appConfig: ApplicationConfig = {
       user: userReducer,
       feed: feedReducer,
       connection: connectionReducer,
+      request: requestReducer,
     }),
     provideStoreDevtools({
       maxAge: 25,

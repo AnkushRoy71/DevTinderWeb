@@ -2,8 +2,8 @@ export interface ConnectionModel {
     _id: string;
     firstName: string;
     lastName: string;
-    photoUrl: string;
+    photoUrl?: string;
     age: number;
     gender: string;
-    about: string;
+    about?: string;
 }
