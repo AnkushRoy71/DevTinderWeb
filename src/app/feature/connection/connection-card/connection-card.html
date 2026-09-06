@@ -1,12 +1,12 @@
 <div class="connection-card flex items-center gap-4 w-150 p-2 rounded">
-    <img
-        src="{{ connection.photoUrl ?? 'https://geographyandyou.com/images/user-profile.png' }}"
-        alt="Connection Icon"
-        class="w-20 h-20 m-2"
-    />
-    <div>
-        <p>{{ connection.firstName + ' ' }} {{ connection.lastName }}</p>
-        <p>{{ connection.age }}</p>
-        <p>{{ connection.about ?? 'Hey!! I am at DevTinder' }}</p>
-    </div>
+  <img
+    src="{{ connection.photoUrl ?? 'https://geographyandyou.com/images/user-profile.png' }}"
+    alt="Connection Icon"
+    class="w-20 h-20 m-2"
+  />
+  <div>
+    <p>{{ connection.firstName + ' ' }} {{ connection.lastName }}</p>
+    <p>{{ connection.age }}</p>
+    <p>{{ connection.about ?? 'Hey!! I am at DevTinder' }}</p>
+  </div>
 </div>
