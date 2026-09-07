@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { selectRequest } from '../../core/shared/state/request/request.selector';
 import { RequestService } from './request-service';
+import { RequestStatus } from '../../core/shared/types/request-status';
 
 @Component({
   imports: [ConnectionCard],
@@ -22,6 +23,11 @@ export default class Request implements OnInit {
       this.getRequests();
     }
   }
+
+  handleRequest(status: RequestStatus, requestId: string) {
+    console.log(status, requestId);
+  }
+  
   getRequests() {
     // Call the service to get requests
     this.requestService.getRequests().subscribe({

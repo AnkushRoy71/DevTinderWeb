@@ -1,18 +1,20 @@
-<div class="connection-card flex items-center space-between w-150 p-2 rounded">
+<div class="connection-card flex items-center w-150 p-2 rounded">
   <img
     src="{{ connection.photoUrl ?? 'https://geographyandyou.com/images/user-profile.png' }}"
     alt="Connection Icon"
-    class="w-20 h-20 m-2"
+    class="w-20 h-20 m-2 rounded-full"
   />
   <div>
     <p>{{ connection.firstName + ' ' }} {{ connection.lastName }}</p>
     <p>{{ connection.age }}</p>
     <p>{{ connection.about ?? 'Hey!! I am at DevTinder' }}</p>
   </div>
-  <div class="flex items-center gap-2">
-    <button type="button" pButton severity="secondary" [outlined]="true" class="flex-1">
-      Dislike
-    </button>
-    <button type="button" pButton class="flex-1">Like</button>
-  </div>
+  @if (isButtonNeeded) {
+    <div class="flex items-center gap-2 ms-auto me-2">
+      <button type="button" pButton severity="secondary" [outlined]="true" class="flex-1" (click)="status.emit('rejected')">
+        Rejected
+      </button>
+      <button type="button" pButton class="flex-1" (click)="status.emit('accepted')">Accepted</button>
+    </div>
+  }
 </div>

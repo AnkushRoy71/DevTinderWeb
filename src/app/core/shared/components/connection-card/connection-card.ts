@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, output } from '@angular/core';
 import { ConnectionModel } from '../../models/connection.model';
 import { ButtonModule } from 'primeng/button';
+import { RequestStatus } from '../../types/request-status';
 
 @Component({
   imports: [ButtonModule],
@@ -10,4 +11,6 @@ import { ButtonModule } from 'primeng/button';
 })
 export class ConnectionCard {
   @Input() connection!: ConnectionModel;
+  @Input() isButtonNeeded = false;
+  status = output<RequestStatus>()
 }

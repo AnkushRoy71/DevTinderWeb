@@ -3,6 +3,6 @@
 <div class="flex flex-col items-center justify-center gap-4 mt-6">
 
     @for(request of requestStore(); track request._id) {
-        <app-connection-card [connection]="request.senderId"></app-connection-card>
+        <app-connection-card [connection]="request.senderId" [isButtonNeeded]="true" (status)="handleRequest($event, request._id)"></app-connection-card>
     }
 </div>
