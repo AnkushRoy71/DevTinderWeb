@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ConnectionCard } from '../connection/connection-card/connection-card';
+import { ConnectionCard } from '../../core/shared/components/connection-card/connection-card';
 import { Store } from '@ngrx/store';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { selectRequest } from '../../core/shared/state/request/request.selector';
@@ -17,7 +17,7 @@ export default class Request implements OnInit {
   requestStore = toSignal(this.storeService.select(selectRequest));
 
   ngOnInit() {
-    console.log("request store" , this.requestStore())
+    console.log('request store', this.requestStore());
     if (!this.requestStore()) {
       this.getRequests();
     }

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ConnectionCard } from './connection-card/connection-card';
+import { ConnectionCard } from '../../core/shared/components/connection-card/connection-card';
 import { ConnectionService } from './connection-service';
 import { Store } from '@ngrx/store';
 import { toSignal } from '@angular/core/rxjs-interop';
