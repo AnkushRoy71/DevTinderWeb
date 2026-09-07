@@ -25,7 +25,15 @@ export default class Request implements OnInit {
   }
 
   handleRequest(status: RequestStatus, requestId: string) {
-    console.log(status, requestId);
+    this.requestService.handleRequest(status, requestId).subscribe({
+      next:(response)=>{
+        console.log(response);
+        this.getRequests();
+      },
+      error:(error)=>{
+        console.log(error)
+      }
+    })
   }
   
   getRequests() {
