@@ -1,9 +1,10 @@
 <div class="mx-auto my-10">
 <h1 class="text-3xl font-bold text-center">Connections</h1>
 <div class="flex flex-col items-center justify-center gap-4 mt-6">
-
+@if(connectionStore()){
     @for(connection of connectionStore(); track connection._id) {
         <app-connection-card [connection]="connection"></app-connection-card>
     }
+}
 </div>
 

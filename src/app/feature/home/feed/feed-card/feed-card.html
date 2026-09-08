@@ -23,10 +23,10 @@
     </div>
     <ng-template #footer>
       <div class="flex items-center gap-2 mt-4">
-        <button type="button" pButton severity="secondary" [outlined]="true" class="flex-1">
+        <button type="button" pButton severity="secondary" [outlined]="true" class="flex-1" (click)="status.emit('dislike')">
           Dislike
         </button>
-        <button type="button" pButton class="flex-1">
+        <button type="button" pButton class="flex-1" (click)="status.emit('like')">
           Like
         </button>
       </div>

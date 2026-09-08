@@ -7,6 +7,6 @@ export const requestReducer = createReducer(
 
   on(addRequest, (state, { request }) => ({
     ...state,
-    request,
+    request: request,
   })),
 );

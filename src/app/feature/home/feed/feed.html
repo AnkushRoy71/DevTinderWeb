@@ -2,7 +2,7 @@
   @if(feedState$ | async; as feedItems){
     @if(feedItems.length > 0){
       @for(feedItem of feedItems; track feedItem._id) {
-        <app-feed-card [feedItem]="feedItem" />
+        <app-feed-card [feedItem]="feedItem" (status)="handleConnection($event, feedItem._id)"/>
       }
     }
     @else{

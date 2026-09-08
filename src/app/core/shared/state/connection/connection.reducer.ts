@@ -7,6 +7,6 @@ export const connectionReducer = createReducer(
 
   on(addConnection, (state, { connection }) => ({
     ...state,
-    connection: [...(state.connection ?? []), ...connection],
+    connection: [...connection],
   })),
 );

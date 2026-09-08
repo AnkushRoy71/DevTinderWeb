@@ -10,7 +10,7 @@ export const feedReducer = createReducer(
     console.log('Reducer received Add Feed action with feed:', feed);
     return {
       ...state,
-      feed: [...state.feed??[], ...feed],
+      feed: feed,
     };
   }),
 );

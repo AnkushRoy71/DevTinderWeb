@@ -4,8 +4,9 @@ import { ApiResponseModel } from '../../../core/shared/models/apiReponse.model';
 import { FeedModel } from '../../../core/shared/models/feed.model';
 import { Store } from '@ngrx/store';
 import { selectFeed } from '../../../core/shared/state/feed/feed.selector';
-import { FeedCard } from "./feed-card/feed-card";
+import { FeedCard } from './feed-card/feed-card';
 import { AsyncPipe } from '@angular/common';
+import { ConnectionStatus } from '../../../core/shared/types/request-status';
 
 @Component({
   imports: [FeedCard, AsyncPipe],
@@ -21,9 +22,22 @@ export default class Feed {
 
   ngOnInit(): void {
     this.feedState$.subscribe((feed) => {
-      if(feed == null){
+      if (feed == null) {
         this.getFeedItems();
       }
+    });
+  }
+
+  handleConnection(status: ConnectionStatus, receiverId: string | undefined) {
+    console.log('jhdcc')
+    this.feedService.handleConnection(status, receiverId??'').subscribe({
+      next: (response) => {
+        console.log(response);
+        this.getFeedItems();
+      },
+      error: (error) => {
+        console.log(error);
+      },
     });
   }
 
