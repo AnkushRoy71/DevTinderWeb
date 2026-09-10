@@ -1,16 +1,17 @@
-import { createReducer, on } from "@ngrx/store";
-import { initialFeedState } from "./feed.state";
-import { addFeed } from "./feed.actions";
-
+import { createReducer, on } from '@ngrx/store';
+import { initialFeedState } from './feed.state';
+import { addFeed, clearFeed } from './feed.actions';
 
 export const feedReducer = createReducer(
   initialFeedState,
 
-  on(addFeed, (state, { feed }) => {
-    console.log('Reducer received Add Feed action with feed:', feed);
-    return {
-      ...state,
-      feed: feed,
-    };
-  }),
+  on(addFeed, (state, { feed }) => ({
+    ...state,
+    feed,
+  })),
+
+  on(clearFeed, (state) => ({
+    ...state,
+    feed: [],
+  })),
 );

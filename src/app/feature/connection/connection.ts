@@ -14,10 +14,10 @@ import { selectConnection } from '../../core/shared/state/connection/connection.
 export default class Connection implements OnInit {
   connectionService = inject(ConnectionService);
   storeService = inject(Store);
-  connectionStore = toSignal(this.storeService.select(selectConnection));
+  connectionStore = toSignal(this.storeService.select(selectConnection),{initialValue:[]});
 
   ngOnInit() {
-    if (!this.connectionStore()) {
+    if (!this.connectionStore()?.length) {
       this.getConnections();
     }
   }
@@ -25,7 +25,6 @@ export default class Connection implements OnInit {
     // Call the service to get connections
     this.connectionService.getConnections().subscribe({
       next: (response) => {
-        console.log('Connections fetched successfully:', response);
         this.storeService.dispatch({
           type: '[Connection] Add Connection',
           connection: response.data,

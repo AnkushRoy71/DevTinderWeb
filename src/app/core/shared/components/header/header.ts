@@ -11,6 +11,9 @@ import { selectUser } from '../../state/user/user.selector';
 import { clearUser } from '../../state/user/user.actions';
 import { AsyncPipe } from '@angular/common';
 import { Auth } from '../../../../feature/auth/auth';
+import { clearFeed } from '../../state/feed/feed.actions';
+import { clearConnection } from '../../state/connection/connection.action';
+import { clearRequest } from '../../state/request/request.action';
 
 @Component({
   imports: [
@@ -38,18 +41,20 @@ export class Header implements OnInit {
   logout(): void {
     this.authService.logOutApi().subscribe({
       next: (response) => {
-        console.log('Logout successful:', response);
         this.clearUserAndRedirect();
       },
       error: (error) => {
         console.error('Logout failed:', error);
         //this.clearUserAndRedirect();
-      }
+      },
     });
   }
 
   private clearUserAndRedirect(): void {
     this.storeService.dispatch(clearUser());
+    this.storeService.dispatch(clearFeed());
+    this.storeService.dispatch(clearConnection());
+    this.storeService.dispatch(clearRequest());
     this.router.navigate(['/login']);
   }
 }

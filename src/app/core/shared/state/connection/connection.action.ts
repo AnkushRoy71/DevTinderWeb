@@ -5,3 +5,5 @@ export const addConnection = createAction(
   '[Connection] Add Connection',
   props<{ connection: ConnectionModel[] }>(),
 );
+
+export const clearConnection = createAction('[Connection] Clear Connection');

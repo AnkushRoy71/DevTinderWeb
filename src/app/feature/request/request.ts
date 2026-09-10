@@ -15,32 +15,30 @@ import { RequestStatus } from '../../core/shared/types/request-status';
 export default class Request implements OnInit {
   requestService = inject(RequestService);
   storeService = inject(Store);
-  requestStore = toSignal(this.storeService.select(selectRequest));
+  requestStore = toSignal(this.storeService.select(selectRequest), { initialValue: null });
 
   ngOnInit() {
-    console.log('request store', this.requestStore());
     if (!this.requestStore()) {
+      console.log("this is request", this.requestStore())
       this.getRequests();
     }
   }
 
   handleRequest(status: RequestStatus, requestId: string) {
     this.requestService.handleRequest(status, requestId).subscribe({
-      next:(response)=>{
-        console.log(response);
+      next: (response) => {
         this.getRequests();
       },
-      error:(error)=>{
-        console.log(error)
-      }
-    })
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
-  
+
   getRequests() {
     // Call the service to get requests
     this.requestService.getRequests().subscribe({
       next: (response) => {
-        console.log('requests fetched successfully:', response);
         this.storeService.dispatch({
           type: '[Request] Add Request',
           request: response.data,

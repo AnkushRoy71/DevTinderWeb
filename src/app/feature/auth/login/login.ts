@@ -44,7 +44,6 @@ export default class Login {
   login(loginData: LoginRequestModel) {
     this.authService.loginApi(loginData).subscribe({
       next: (response: { data: UserModel; message: string }) => {
-        console.log('Login successful:', response);
         const userData = response.data;
         this.store.dispatch(addUser({ user: userData }));
         this.navigate.navigate(['/feed']);

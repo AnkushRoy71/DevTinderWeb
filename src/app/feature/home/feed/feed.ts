@@ -29,10 +29,8 @@ export default class Feed {
   }
 
   handleConnection(status: ConnectionStatus, receiverId: string | undefined) {
-    console.log('jhdcc')
     this.feedService.handleConnection(status, receiverId??'').subscribe({
       next: (response) => {
-        console.log(response);
         this.getFeedItems();
       },
       error: (error) => {

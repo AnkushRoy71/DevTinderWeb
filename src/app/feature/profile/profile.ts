@@ -37,7 +37,7 @@ export interface ProfileFormModel extends FeedModel {
 })
 export default class Profile {
   private readonly store = inject(Store);
-  private readonly currentUser = this.store.selectSignal(selectUser);
+  private readonly currentUser = this.store.selectSignal(selectUser) ?? null;
   private readonly profileService = inject(ProfileService)
 
   readonly submitted = signal(false);
@@ -61,7 +61,6 @@ export default class Profile {
 
   onSubmit(event: Event): void {
     event.preventDefault();
-    console.log('Form submitted:', this.profileModel());
     this.submitted.set(true);
 
     if (this.profileForm().valid()) {
@@ -70,10 +69,9 @@ export default class Profile {
   }
 
   private saveProfile(profile: ProfileFormModel): void {
-    const user = this.currentUser();
+    //const user = this.currentUser();
     this.profileService.updateUserDetails(profile).subscribe({
       next: (response: ApiResponseModel<UserModel>) => {
-        console.log('Profile updated successfully:', response.data);
         if (response.data) {
           this.store.dispatch(addUser({ user: response.data }));
         }
