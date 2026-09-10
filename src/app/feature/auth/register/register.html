@@ -1,1 +1,49 @@
-<p>register works!</p>
+<div class="flex justify-center align-center mt-10">
+  <p-card
+    class="max-w-sm w-full"
+    header="Create account"
+    subheader="Sign up to get started with DevTinder."
+  >
+    <form class="space-y-6 mt-3" (submit)="onSubmit($event)">
+      <div class="flex flex-col gap-2">
+        <label pLabel for="firstName">First name</label>
+        <input pInputText [formField]="registerForm.firstName" id="firstName" type="text" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label pLabel for="lastName">Last name</label>
+        <input pInputText [formField]="registerForm.lastName" id="lastName" type="text" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label pLabel for="age">Age</label>
+        <input pInputText [formField]="registerForm.age" id="age" type="number"  />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label pLabel for="gender">Gender</label>
+        <p-select
+          [formField]="registerForm.gender"
+          inputId="gender"
+          [options]="genderOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select gender"
+          class="w-full"
+        />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label pLabel for="email">Email</label>
+        <input pInputText [formField]="registerForm.email" id="email" type="email" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label pLabel for="password">Password</label>
+        <input pInputText [formField]="registerForm.password" id="password" type="password" />
+      </div>
+      <button type="submit" pButton class="w-full">Sign up</button>
+    </form>
+    <ng-template #footer>
+      <div class="mt-2 text-center text-surface-500 text-sm">
+        Already have an account?
+        <button type="button" pButton variant="link" class="p-0" routerLink="/login">Login</button>
+      </div>
+    </ng-template>
+  </p-card>
+</div>

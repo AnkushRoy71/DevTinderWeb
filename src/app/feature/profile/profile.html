@@ -97,5 +97,7 @@
       </div>
     </form>
   </p-card>
-  <app-feed-card  [feedItem]="profileModel()"/>
+  @if(profileModel()){
+    <app-feed-card  [feedItem]="profileModel()"/>
+  }
 </div>

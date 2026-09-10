@@ -1,9 +1,7 @@
 <div class="flex justify-center mt-10">
   @if(feedState$ | async; as feedItems){
     @if(feedItems.length > 0){
-      @for(feedItem of feedItems; track feedItem._id) {
-        <app-feed-card [feedItem]="feedItem" (status)="handleConnection($event, feedItem._id)"/>
-      }
+        <app-feed-card [feedItem]="feedItems[0]" (status)="handleConnection($event, feedItems[0]._id)"/>
     }
     @else{
       <p class="text-center text-gray-500">No feed items available.</p>

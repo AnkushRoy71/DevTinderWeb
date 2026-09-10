@@ -6,6 +6,10 @@ export const routes: Routes = [
     loadComponent: () => import('./feature/auth/login/login'),
   },
   {
+    path: 'register',
+    loadComponent: () => import('./feature/auth/register/register'),
+  },
+  {
     path: 'feed',
     loadComponent: () => import('./feature/home/feed/feed'),
   },
