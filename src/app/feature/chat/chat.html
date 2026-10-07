@@ -1,0 +1,61 @@
+<main class="chat-page" aria-label="Messages">
+  <section class="chat-window">
+    <section class="message-panel" id="conversation-olivia" aria-label="Conversation with Olivia Chen">
+      <header class="message-header">
+        <div class="contact-details">
+          <img class="avatar" [src]="connection()?.photoUrl ?? defaultPhotoUrl" alt="" />
+          <div>
+            @if (connection(); as chatConnection) {
+              <h2>{{ chatConnection.firstName }} {{ chatConnection.lastName }}</h2>
+            } @else {
+              <h2>Chat</h2>
+            }
+            <p><span class="online-indicator" aria-hidden="true"></span>Online</p>
+          </div>
+        </div>
+        <div class="message-actions" aria-label="Conversation actions">
+          <button class="icon-button" type="button" aria-label="Search in conversation">⌕</button>
+          <button class="icon-button more-button" type="button" aria-label="More conversation options">•••</button>
+        </div>
+      </header>
+
+      <div class="message-history" aria-label="Message history">
+        <p class="date-divider">Today</p>
+
+        <div class="message-row received">
+          <img class="avatar message-avatar" [src]="connection()?.photoUrl ?? defaultPhotoUrl" alt="" />
+          <div class="message-content">
+            <p class="message-bubble">Hey! I saw your profile and noticed you’ve been working with Angular. I’d love to hear what you’re building.</p>
+            <time>10:36 AM</time>
+          </div>
+        </div>
+
+        <div class="message-row sent">
+          <div class="message-content">
+            <p class="message-bubble">Hi Olivia! I’m building a community app for developers to meet and collaborate. What kind of projects are you into?</p>
+            <time>10:39 AM <span aria-label="Read">✓✓</span></time>
+          </div>
+        </div>
+
+        <div class="message-row received">
+          <img class="avatar message-avatar" [src]="connection()?.photoUrl ?? defaultPhotoUrl" alt="" />
+          <div class="message-content">
+            <p class="message-bubble">That sounds like a great idea! I’m currently working on a design system for a small startup. Maybe we could share some ideas sometime?</p>
+            <time>10:42 AM</time>
+          </div>
+        </div>
+      </div>
+
+      <footer class="composer">
+        <div class="composer-box">
+          <input type="text" placeholder="Write a message..." aria-label="Write a message" />
+          <div class="composer-actions">
+            <button class="composer-icon" type="button" aria-label="Add an attachment">＋</button>
+            <button class="composer-icon emoji-button" type="button" aria-label="Add an emoji">☺</button>
+            <button class="send-button" type="button" aria-label="Send message">➤</button>
+          </div>
+        </div>
+      </footer>
+    </section>
+  </section>
+</main>

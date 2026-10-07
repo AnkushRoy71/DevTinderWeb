@@ -16,5 +16,9 @@
       </button>
       <button type="button" pButton class="flex-1" (click)="status.emit('accepted')">Accepted</button>
     </div>
+  } @else {
+    <div class="ms-auto me-2">
+      <button type="button" pButton [routerLink]="['/chat']" [state]="{ connection }">Chat</button>
+    </div>
   }
 </div>

@@ -26,6 +26,10 @@ export const routes: Routes = [
     loadComponent: () => import('./feature/request/request'),
   },
   {
+    path: 'chat',
+    loadComponent: () => import('./feature/chat/chat'),
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
