@@ -1,6 +1,10 @@
 <main class="chat-page" aria-label="Messages">
   <section class="chat-window">
-    <section class="message-panel" id="conversation-olivia" aria-label="Conversation with Olivia Chen">
+    <section
+      class="message-panel"
+      id="conversation"
+      [attr.aria-label]="'Conversation with ' + (connection()?.firstName ?? 'selected connection')"
+    >
       <header class="message-header">
         <div class="contact-details">
           <img class="avatar" [src]="connection()?.photoUrl ?? defaultPhotoUrl" alt="" />
@@ -20,41 +24,47 @@
       </header>
 
       <div class="message-history" aria-label="Message history">
-        <p class="date-divider">Today</p>
-
-        <div class="message-row received">
-          <img class="avatar message-avatar" [src]="connection()?.photoUrl ?? defaultPhotoUrl" alt="" />
-          <div class="message-content">
-            <p class="message-bubble">Hey! I saw your profile and noticed you’ve been working with Angular. I’d love to hear what you’re building.</p>
-            <time>10:36 AM</time>
-          </div>
-        </div>
-
-        <div class="message-row sent">
-          <div class="message-content">
-            <p class="message-bubble">Hi Olivia! I’m building a community app for developers to meet and collaborate. What kind of projects are you into?</p>
-            <time>10:39 AM <span aria-label="Read">✓✓</span></time>
-          </div>
-        </div>
-
-        <div class="message-row received">
-          <img class="avatar message-avatar" [src]="connection()?.photoUrl ?? defaultPhotoUrl" alt="" />
-          <div class="message-content">
-            <p class="message-bubble">That sounds like a great idea! I’m currently working on a design system for a small startup. Maybe we could share some ideas sometime?</p>
-            <time>10:42 AM</time>
-          </div>
-        </div>
+        @if (messages().length) {
+          @for (message of messages(); track $index) {
+            @if (message.senderId === currentUser()?._id) {
+              <div class="message-row sent">
+                <div class="message-content">
+                  <p class="message-bubble">{{ message.message }}</p>
+                </div>
+              </div>
+            } @else {
+              <div class="message-row received">
+                <img
+                  class="avatar message-avatar"
+                  [src]="connection()?.photoUrl ?? defaultPhotoUrl"
+                  alt=""
+                />
+                <div class="message-content">
+                  <p class="message-bubble">{{ message.message }}</p>
+                </div>
+              </div>
+            }
+          }
+        } @else {
+          <p class="empty-chat">No messages yet. Start the conversation.</p>
+        }
       </div>
 
       <footer class="composer">
-        <div class="composer-box">
-          <input type="text" placeholder="Write a message..." aria-label="Write a message" />
+        <form class="composer-box" (submit)="sendMessage($event)">
+          <input
+            type="text"
+            placeholder="Write a message..."
+            aria-label="Write a message"
+            [value]="draftMessage()"
+            (input)="updateDraftMessage($event)"
+          />
           <div class="composer-actions">
             <button class="composer-icon" type="button" aria-label="Add an attachment">＋</button>
             <button class="composer-icon emoji-button" type="button" aria-label="Add an emoji">☺</button>
-            <button class="send-button" type="button" aria-label="Send message">➤</button>
+            <button class="send-button" type="submit" aria-label="Send message">➤</button>
           </div>
-        </div>
+        </form>
       </footer>
     </section>
   </section>

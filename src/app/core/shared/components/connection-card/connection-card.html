@@ -18,7 +18,7 @@
     </div>
   } @else {
     <div class="ms-auto me-2">
-      <button type="button" pButton [routerLink]="['/chat']" [state]="{ connection }">Chat</button>
+      <button type="button" pButton [routerLink]="['/chat', connection._id]">Chat</button>
     </div>
   }
 </div>

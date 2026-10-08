@@ -26,7 +26,7 @@ export const routes: Routes = [
     loadComponent: () => import('./feature/request/request'),
   },
   {
-    path: 'chat',
+    path: 'chat/:connectionId',
     loadComponent: () => import('./feature/chat/chat'),
   },
   {

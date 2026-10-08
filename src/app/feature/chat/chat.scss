@@ -145,6 +145,13 @@
   text-align: center;
 }
 
+.empty-chat {
+  margin: auto;
+  color: var(--p-text-muted-color);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
 .message-row {
   display: flex;
   align-items: flex-end;
